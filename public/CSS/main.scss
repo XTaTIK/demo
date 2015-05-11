@@ -1,4 +1,82 @@
 
+$lighter-border-color: #eee;
+$subdued-text: #999;
+
+h1 {
+    margin: 0;
+
+    a {
+        color: #777!important;
+        text-decoration: none!important;
+    }
+}
+
 .checkout-crumbs .active {
     color: blue;
+}
+
+footer {
+    padding-bottom: 40px;
+}
+
+.blog_nav {
+    clear: both;
+    list-style: none;
+    overflow: hidden;
+    padding: .5em 0;
+    margin-top: 1em;
+    border: 1px dotted $lighter-border-color;
+    border-left: 0;
+    border-right: 0;
+    font-size: 90%;
+
+    .next {
+        float: right;
+    }
+
+    .next:after {
+        content: "→";
+        padding-left: .5em;
+    }
+
+    .prev {
+        float: left;
+    }
+
+    .prev:before {
+        content: "←";
+        padding-right: .5em;
+    }
+}
+
+#navbar a {
+    outline: 0;
+}
+
+.valign > [class^="col-"],
+.valign > [class*=" col-"] {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+#feedback_ideas_to_submit {
+    margin-top: 20px;
+}
+
+.qty-input {
+    width: 4em!important;
+}
+
+.product_number {
+    color: $subdued-text;
+}
+
+.price_large {
+    font-size: 150%;
+    font-weight: bold;
+
+    .sku {
+        font-size: 70%;
+    }
 }

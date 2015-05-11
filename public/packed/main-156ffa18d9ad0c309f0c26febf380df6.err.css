@@ -1,0 +1,1 @@
+html:before{background:#f00;color:#fff;font-size:14pt;position:fixed;padding:20px;z-index:9999;content:"main.scss: Failed to run '/usr/local/bin/sass --stdin --scss -I /home/zoffix/Desktop/CPANPRC/XTaTIK/public/CSS' ($?=65, $!=25) Error: Undefined variable: '$lighter-border-color'.\A        on line 20 of standard input\A  Use --trace for backtrace.";}

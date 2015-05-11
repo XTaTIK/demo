@@ -1,0 +1,19 @@
+.unstyled_list, form ul,
+.list_button_group,
+#article_list,
+#product_list,
+#product_list > li > .row {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0; }
+
+.unstyled_list li, form ul li,
+.list_button_group li,
+#article_list li,
+#product_list li,
+#product_list > li > .row li {
+  margin-left: 0;
+  padding-left: 0; }
+
+.qty-input {
+  width: 2em; }

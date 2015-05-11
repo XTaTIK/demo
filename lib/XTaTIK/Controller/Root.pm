@@ -34,7 +34,6 @@ sub contact_post {
     my $self = shift;
 
     $self->form_checker(
-        error_class => 'message error',
         rules => {
             name => { max => 200, },
             email => { max => 200, },
@@ -76,7 +75,6 @@ sub feedback_post {
     my $self = shift;
 
     $self->form_checker(
-        error_class => 'message error',
         rules => {
             email    => { max => 200, optional => 1, },
             feedback => { max => 100_000, },

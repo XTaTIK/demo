@@ -1,0 +1,14 @@
+.fake_list {
+  list-style: none; }
+
+h1 {
+  margin: 0; }
+
+.checkout-crumbs .active {
+  color: blue; }
+
+footer {
+  padding-bottom: 40px; }
+
+#locations li {
+  list-style: none; }

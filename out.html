@@ -1,0 +1,236 @@
+t/02-unit-multi-calculation.t .. 
+ok 1 - GET /product/Test-Product-1-001-TEST1
+ok 2 - POST /cart/add
+ok 3 - GET /product/Test-Product-2-001-TEST2
+ok 4 - POST /cart/add
+ok 5 - GET /product/Test-Product-3-001-TEST3
+ok 6 - POST /cart/add
+ok 7 - GET /product/Test-Product-4-001-TEST4
+ok 8 - POST /cart/add
+ok 9 - GET /product/Test-Product-5-001-TEST5
+ok 10 - POST /cart/add
+ok 11 - GET /product/Test-Product-6-001-TEST6
+ok 12 - POST /cart/add
+ok 13 - GET /product/Test-Product-7-001-TEST7
+ok 14 - POST /cart/add
+ok 15 - GET /product/Test-Product-8-001-TEST8
+ok 16 - POST /cart/add
+ok 17 - GET /product/Test-Product-9-001-TEST9
+ok 18 - POST /cart/add
+ok 19 - GET /product/Test-Product-10-001-TEST10
+ok 20 - POST /cart/add
+ok 21 - GET /product/Test-Product-11-001-TEST11
+ok 22 - POST /cart/add
+ok 23 - GET /product/Test-Product-12-001-TEST12
+ok 24 - POST /cart/add
+ok 25 - GET /cart/
+$VAR1 = [
+          '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Your Cart /
+        Widgets / Example Company
+        / Canada</title>
+</head>
+<body>
+    <h1>Widgets
+            / Example Company</h1>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Shop</a></li>
+            <li><a href="/history">Our History</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <p id="cart">
+            <a href="/cart/">Total: $2831<sup>.52</sup></a>
+            <br>Cart ID: 1
+        </p>
+    </nav>
+
+        <h2>Your Cart</h2>
+
+    
+
+    <p>Here are the items you\'re purchasing. To remove a product, set quantity to zero.</p>
+
+    <form action="/cart/checkout" method="POST">
+        <input name="csrf_token" type="hidden" value="418be379e1408f1a09426251f49043d7ec13c91d">
+        <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-1-001-TEST1"
+                        >Test Product 1</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_1" type="hidden" value="1">
+                        <input name="number_1" type="hidden" value="001-TEST1">
+                        <input name="quantity_1" type="text" value="1">
+                        each
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-2-001-TEST2"
+                        >Test Product 2</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_2" type="hidden" value="2">
+                        <input name="number_2" type="hidden" value="001-TEST2">
+                        <input name="quantity_2" type="text" value="2">
+                        eaches
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-3-001-TEST3"
+                        >Test Product 3</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_3" type="hidden" value="3">
+                        <input name="number_3" type="hidden" value="001-TEST3">
+                        <input name="quantity_3" type="text" value="1">
+                        each
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-4-001-TEST4"
+                        >Test Product 4</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_4" type="hidden" value="4">
+                        <input name="number_4" type="hidden" value="001-TEST4">
+                        <input name="quantity_4" type="text" value="4">
+                        eaches
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-5-001-TEST5"
+                        >Test Product 5</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_5" type="hidden" value="5">
+                        <input name="number_5" type="hidden" value="001-TEST5">
+                        <input name="quantity_5" type="text" value="1">
+                        box of 5
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-6-001-TEST6"
+                        >Test Product 6</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_6" type="hidden" value="6">
+                        <input name="number_6" type="hidden" value="001-TEST6">
+                        <input name="quantity_6" type="text" value="6">
+                        boxes of 5
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-7-001-TEST7"
+                        >Test Product 7</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_7" type="hidden" value="7">
+                        <input name="number_7" type="hidden" value="001-TEST7">
+                        <input name="quantity_7" type="text" value="1">
+                        pair
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-8-001-TEST8"
+                        >Test Product 8</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_8" type="hidden" value="8">
+                        <input name="number_8" type="hidden" value="001-TEST8">
+                        <input name="quantity_8" type="text" value="8">
+                        pairs
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-9-001-TEST9"
+                        >Test Product 9</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_9" type="hidden" value="9">
+                        <input name="number_9" type="hidden" value="001-TEST9">
+                        <input name="quantity_9" type="text" value="1">
+                        case of 100
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-10-001-TEST10"
+                        >Test Product 10</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_10" type="hidden" value="10">
+                        <input name="number_10" type="hidden" value="001-TEST10">
+                        <input name="quantity_10" type="text" value="10">
+                        cases of 100
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-11-001-TEST11"
+                        >Test Product 11</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_11" type="hidden" value="11">
+                        <input name="number_11" type="hidden" value="001-TEST11">
+                        <input name="quantity_11" type="text" value="1">
+                        pack of 42
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="/product-pics/thumbs-tiny/nopic.jpg" alt=""></td>
+                    <td><a href="/product/Test-Product-12-001-TEST12"
+                        >Test Product 12</a></td>
+                    <td>$58<sup>.99</sup></td>
+                    <td>
+                        <input name="id_12" type="hidden" value="12">
+                        <input name="number_12" type="hidden" value="001-TEST12">
+                        <input name="quantity_12" type="text" value="12">
+                        packs of 42
+                    </td>
+                </tr>
+        </tbody>
+        </table>
+        <input type="submit" value="Proceed to the next step">
+    </form>
+
+</body>
+
+<footer>
+    <small>Copyright © 2015
+        by <a href="http://master-company.example.com"
+            >Example Company</a>
+    </small>
+</footer>
+'
+        ];
+1..25
+ok
+All tests successful.
+Files=1, Tests=25,  1 wallclock secs ( 0.02 usr  0.00 sys +  0.37 cusr  0.02 csys =  0.41 CPU)
+Result: PASS

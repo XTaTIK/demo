@@ -5,6 +5,7 @@ use Mojo::Base 'Mojolicious';
 use XTaTIK::Model::Cart;
 use XTaTIK::Model::Products;
 use XTaTIK::Model::Users;
+use XTaTIK::Model::Blog;
 
 use HTML::Entities;
 use Mojo::Pg;
@@ -21,12 +22,26 @@ sub startup {
     $self->config( hypnotoad => {listen => ['http://*:3005']} );
 
     $self->plugin('AntiSpamMailTo');
-    $self->plugin('FormChecker');
+    $self->plugin('FormChecker' => error_class => 'foo');
     $self->plugin('IP2Location');
     $self->plugin('AssetPack');
 
     $self->asset(
-        'main.css' => '/CSS/main.scss',
+        'app.css' => qw{
+        /CSS/reset.scss
+        http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css
+        /CSS/bs-callout.scss
+        /CSS/bootstrap-extras.scss
+        /CSS/main.scss
+        }
+    );
+
+    $self->asset(
+        'app.js' => qw{
+        http://code.jquery.com/jquery-1.11.3.min.js
+        http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js
+        /JS/ie10-viewport-bug-workaround.js
+        },
     );
 
     my $mconf = {
@@ -52,44 +67,61 @@ sub startup {
     $self->helper( cart         => \&_helper_cart         );
     $self->helper( cart_dollars => \&_helper_cart_dollars );
     $self->helper( cart_cents   => \&_helper_cart_cents   );
+    $self->helper(
+        blog => sub { state $blog = XTaTIK::Model::Blog->new; }
+    );
+    $self->helper( active_page => sub {
+        my ( $c, $name ) = @_;
+        my $active = $c->stash('active_page') // '';
+        return $active eq $name ? ' class="active"' : '';
+    });
 
     my $r = $self->routes;
+    { # Root routes
+        $r->get('/'        )->to('root#index'        );
+        $r->get('/contact' )->to('root#contact'      );
+        $r->get('/about'   )->to('root#about'        );
+        $r->get('/history' )->to('root#history'      );
+        $r->get('/login'   )->to('root#login'        );
+        $r->post('/contact')->to('root#contact_post' );
+        $r->get('/feedback')->to('root#feedback'     );
+        $r->post('/feedback')->to('root#feedback_post');
+        $r->get('/product/(*url)')->to('root#product');
+        $r->get('/products(*category)')
+            ->to('root#products_category', { category => '' });
+    }
 
-    # Root routes
-    $r->get('/'        )->to('root#index'        );
-    $r->get('/contact' )->to('root#contact'      );
-    $r->get('/about'   )->to('root#about'        );
-    $r->get('/history' )->to('root#history'      );
-    $r->get('/login'   )->to('root#login'        );
-    $r->post('/contact')->to('root#contact_post' );
-    $r->get('/feedback')->to('root#feedback'     );
-    $r->post('/feedback')->to('root#feedback_post');
-    $r->get('/product/(*url)')->to('root#product');
-    $r->get('/products(*category)')
-        ->to('root#products_category', { category => '' });
+    { # Cart routes
+        my $rc = $r->under('/cart');
+        $rc->get( '/'               )->to('cart#index'          );
+        $rc->any( '/thank-you'      )->to('cart#thank_you'      );
+        $rc->post('/add'            )->to('cart#add'            );
+        $rc->post('/checkout'       )->to('cart#checkout'       );
+        $rc->post('/checkout-review')->to('cart#checkout_review');
+    }
 
-    # Cart routes
-    my $rc = $r->under('/cart');
-    $rc->get( '/'               )->to('cart#index'          );
-    $rc->any( '/thank-you'      )->to('cart#thank_you'      );
-    $rc->post('/add'            )->to('cart#add'            );
-    $rc->post('/checkout'       )->to('cart#checkout'       );
-    $rc->post('/checkout-review')->to('cart#checkout_review');
+    { # Blog routes
+        my $rb = $r->under('/blog');
+        $rb->get('/'     )->to('blog#index');
+        $rb->get('/*post')->to('blog#read');
+    }
 
-    # User section routes
-    $r->post('/login' )->to('user#login' );
-    $r->any( '/logout')->to('user#logout');
-    my $ru = $r->under('/user')->to('user#is_logged_in');
-    $ru->get('/')->to('user#index')->name('user/index');
-    $ru->get('/master-products-database')
-        ->to('user#master_products_database')
-        ->name('user/master_products_database');
-    $ru->post('/master-products-database')
-        ->to('user#master_products_database_post');
-    $ru->post('/master-products-database/update')
-        ->to('user#master_products_database_update');
-    $ru->post('/master-products-database/delete')
-        ->to('user#master_products_database_delete');
+    { # User section routes
+        $r->post('/login' )->to('user#login' );
+        $r->any( '/logout')->to('user#logout');
+
+        my $ru = $r->under('/user')->to('user#is_logged_in');
+        $ru->get('/')->to('user#index')->name('user/index');
+        $ru->get('/master-products-database')
+            ->to('user#master_products_database')
+            ->name('user/master_products_database');
+        $ru->post('/master-products-database')
+            ->to('user#master_products_database_post');
+        $ru->post('/master-products-database/update')
+            ->to('user#master_products_database_update');
+        $ru->post('/master-products-database/delete')
+            ->to('user#master_products_database_delete');
+    }
 }
 
 #### HELPERS

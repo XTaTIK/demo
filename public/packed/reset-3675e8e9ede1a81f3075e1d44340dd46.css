@@ -1,0 +1,8 @@
+.unstyled_list, form ul, #article_list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0; }
+
+.unstyled_list li, form ul li, #article_list li {
+  margin-left: 0;
+  padding-left: 0; }

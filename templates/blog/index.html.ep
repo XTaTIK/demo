@@ -1,0 +1,15 @@
+% layout 'default';
+% title 'Blog';
+% stash active_page => 'blog';
+
+<ul id="article_list" class="row">
+    % for my $post ( @$posts ) {
+        <li class="col-sm-6 col-md-4"><a href="/blog/<%= $post->{url} %>">
+            <div class="well">
+                <img src="/content-pics/blog/thumbs/<%= $post->{url} %>.jpg"
+                alt="" class="thumbnail img-responsive">
+                <%= $post->{title}%> <small><%= $post->{date} %></small></a
+            ></div>
+        </li>
+    % }
+</ul>

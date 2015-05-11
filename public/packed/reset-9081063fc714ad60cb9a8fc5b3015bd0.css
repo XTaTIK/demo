@@ -1,0 +1,12 @@
+.unstyled_list, form ul,
+.list_button_group,
+#article_list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0; }
+
+.unstyled_list li, form ul li,
+.list_button_group li,
+#article_list li {
+  margin-left: 0;
+  padding-left: 0; }

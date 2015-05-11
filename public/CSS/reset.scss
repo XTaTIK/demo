@@ -1,0 +1,19 @@
+
+.unstyled_list {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.unstyled_list li {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+form ul,
+.list_button_group,
+#article_list,
+#product_list,
+#product_list > li > .row {
+    @extend .unstyled_list;
+}
